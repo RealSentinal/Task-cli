@@ -34,4 +34,35 @@ def main():
             for i in data:
                 print( str(i) + ": " + data[i])
 
+        
+        if x == "del":
+            with open("data.json", "r") as f:
+                data = json.load(f)
+
+            id = int(input("id: "))
+
+            if str(id) in data:
+                del data[str(id)]
+
+                with open("data.json", "w") as f:
+                    json.dump(data, f, indent=4)
+
+            else:
+                print("id not found")
+
+        if x == "clear":
+            with open("data.json", "w") as f:
+                json.dump({}, f)
+
+            print("data cleared")
+
+        if x == "help":
+            print("add, list, del, clear, exit, help")
+
+        if x not in ["add", "list", "del", "clear", "exit", "help"]:
+            print("command not found")
+
+        if x == "exit":
+            break
+
 main()  
